@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main>
+    <section id="rows"></section>
+    <p id="last"></p>
+    <p id="status"></p>
+    <div class="actions">
+      <button id="refresh">Update now</button>
+      <button id="test" class="secondary">Test alert</button>
+    </div>
+    <div class="settings">
+      <label class="auto"><input type="checkbox" id="statusline"> Show usage line by the chat box</label>
+      <label class="auto"><input type="checkbox" id="alerts"> Alert me at 80%, 90% and when a limit is hit</label>
+      <label class="auto"><input type="checkbox" id="alertReset"> Alert me when a limit resets</label>
+    </div>
+    <details>
+      <summary>Diagnostics</summary>
+      <pre id="raw"></pre>
+    </details>
+  </main>
+  <script src="usage-api.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+name: Attach extension zip to release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check manifest version matches the release tag
+        run: |
+          version=$(python3 -c "import json; print(json.load(open('extension/manifest.json'))['version'])")
+          tag="${GITHUB_REF_NAME#v}"
+          if [ "$version" != "$tag" ]; then
+            echo "::error::extension/manifest.json says $version but the release tag is $GITHUB_REF_NAME. Make them match."
+            exit 1
+          fi
+
+      - name: Zip the extension
+        run: |
+          cd extension
+          zip -r "../usage-counter-for-claude-${GITHUB_REF_NAME}.zip" . -x ".*"
+
+      - name: Upload the zip to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "$GITHUB_REF_NAME" "usage-counter-for-claude-${GITHUB_REF_NAME}.zip" --clobber

@@ -1,0 +1,64 @@
+:root {
+  --bg: #f6f7f9;
+  --fg: #1a1d24;
+  --muted: #6b7280;
+  --track: #e2e5ea;
+  --ok: #2a9d8f;
+  --warn: #e9a23b;
+  --bad: #d6453d;
+  --btn: #1a1d24;
+  --btn-fg: #f6f7f9;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #171a20;
+    --fg: #eceff4;
+    --muted: #9aa3b2;
+    --track: #2c313b;
+    --btn: #eceff4;
+    --btn-fg: #171a20;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  width: 320px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+main { padding: 16px; }
+
+.row { margin-bottom: 18px; }
+.head { display: flex; justify-content: space-between; align-items: baseline; }
+.label { font-weight: 600; }
+.pct { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 20px; }
+.row.session .pct { font-size: 34px; letter-spacing: -0.02em; }
+.bar { height: 8px; border-radius: 4px; background: var(--track); overflow: hidden; margin: 6px 0; }
+.fill { height: 100%; border-radius: 4px; transition: width .4s ease; }
+.reset { color: var(--muted); font-size: 12px; }
+
+#status { color: var(--muted); font-size: 12px; margin: 0 0 12px; }
+.actions { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+button {
+  background: var(--btn); color: var(--btn-fg);
+  border: 0; border-radius: 6px; padding: 7px 12px; font: inherit; font-weight: 600; cursor: pointer;
+}
+button:disabled { opacity: .5; cursor: default; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid var(--ok); outline-offset: 2px; }
+a { color: var(--fg); }
+.auto { display: flex; gap: 8px; align-items: center; color: var(--muted); font-size: 12px; }
+details { margin-top: 14px; color: var(--muted); font-size: 12px; }
+summary { cursor: pointer; }
+.hint { margin: 8px 0; }
+pre { max-height: 140px; overflow: auto; background: var(--track); padding: 8px; border-radius: 6px; white-space: pre-wrap; font-size: 11px; }
+.empty { color: var(--muted); margin: 0 0 16px; }
+
+.settings { display: grid; gap: 8px; }
+.settings .auto { justify-content: space-between; }
+select { background: var(--track); color: var(--fg); border: 0; border-radius: 6px; padding: 4px 6px; font: inherit; }
+.actions { gap: 8px; }
+button.secondary { background: var(--track); color: var(--fg); }
+#last { margin: -6px 0 10px; font-size: 12px; }
+.settings { margin-bottom: 4px; }
+.settings .auto { justify-content: flex-start; }
